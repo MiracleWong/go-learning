@@ -9,6 +9,13 @@ func TestWhileLoop(t *testing.T) {
 		n++
 	}
 }
+
+// go语言的方法支持多返回值
+func TestIfMultiSec(t *testing.T) {
+	if a := 1 == 1; a {
+		t.Log("1==1")
+	}
+}
 func TestSwitchMultiCase(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		switch i {
