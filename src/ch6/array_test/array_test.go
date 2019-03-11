@@ -1,6 +1,8 @@
-package operator_test
+package array_test
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestArrayInit(t *testing.T) {
 	var arr [3]int

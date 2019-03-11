@@ -1,4 +1,4 @@
-package operator_test
+package map_test
 
 import "testing"
 
