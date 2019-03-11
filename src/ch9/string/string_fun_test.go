@@ -23,7 +23,4 @@ func TestConv(t *testing.T) {
 	if i, err := strconv.Atoi("10"); err == nil {
 		t.Log(10 + i)
 	}
-	// for i, err :=   .Atoi("10"); err == nil {
-	//     t.Log(10 + i)
-	// }
 }
