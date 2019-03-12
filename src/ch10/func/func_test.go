@@ -29,3 +29,28 @@ func TestFn(t *testing.T) {
 	tsSF := timeSpent(SlowFunc)
 	t.Log(tsSF(10))
 }
+
+// 可变参数的函数
+func Sum(ops ...int) int {
+	ret := 0
+	for _, op := range ops {
+		ret += op
+	}
+	return ret
+}
+
+func TestVarParamas(t *testing.T) {
+	t.Log(Sum(1, 2, 3, 4))
+	t.Log(Sum(1, 2, 3, 4, 5))
+}
+
+func Clear() {
+	fmt.Println("Clear Resources")
+}
+
+func TestDefer(t *testing.T) {
+	defer Clear()
+	fmt.Println("Start")
+	// panic("err")
+	// fmt.Println("End") // 未执行到的语句
+}
