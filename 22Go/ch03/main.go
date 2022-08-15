@@ -78,4 +78,15 @@ func main() {
 		}
 	}
 	fmt.Println("the sum is", sum3)
+
+	// 作业：continue的正确用法
+	sum4 := 0
+	for i := 1; i <= 100; i++ {
+		//sum4 += i
+		if i%2 != 0 {
+			continue
+		}
+		sum4 += i
+	}
+	fmt.Println("the sum is", sum4)
 }
