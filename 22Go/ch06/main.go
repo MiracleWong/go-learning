@@ -13,6 +13,30 @@ type person struct {
 	addr address
 }
 
+// Factory Func can auto generate:
+// Generate(Alt + Insert) --> Constructor
+func newPerson(name string) *person {
+	return &person{name: name}
+}
+
+type Stringer interface {
+	// 通过它的 String() 方法获取一个字符串
+
+	String() string
+}
+
+func (p person) String() string {
+	return fmt.Sprintf("the name is %s, age is %d ", p.name, p.age)
+}
+
+func (addr address) String() string {
+	return fmt.Sprintf("the ddar is %s %s", addr.province, addr.city)
+}
+
+func printString(s fmt.Stringer) {
+	fmt.Println(s.String())
+}
+
 func main() {
 	p := person{
 		name: "MiracleWong",
@@ -24,4 +48,8 @@ func main() {
 	}
 
 	fmt.Println(p.addr.city)
+
+	printString(p)
+	//printString(&p)
+	printString(p.addr)
 }
