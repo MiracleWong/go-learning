@@ -37,6 +37,21 @@ func printString(s fmt.Stringer) {
 	fmt.Println(s.String())
 }
 
+type Reader interface {
+	Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+	Write(p []byte) (n int, err error)
+}
+
+// ReadWriter是Reader和Writer的组合
+
+type ReadWriter interface {
+	Reader
+	Writer
+}
+
 func main() {
 	p := person{
 		name: "MiracleWong",
