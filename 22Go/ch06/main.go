@@ -62,9 +62,8 @@ func main() {
 		},
 	}
 
-	fmt.Println(p.addr.city)
+	fmt.Println(p.addr.province, p.addr.city)
 
 	printString(p)
-	//printString(&p)
-	printString(p.addr)
+	printString(&p)
 }
