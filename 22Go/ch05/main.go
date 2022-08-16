@@ -97,4 +97,11 @@ func main() {
 	age.Modify()
 	age.String()
 	(&age).String()
+
+	// 作业
+
+	age2 := Age(35)
+	sm := age2.String
+	sm()
+	//sm(age2)
 }
