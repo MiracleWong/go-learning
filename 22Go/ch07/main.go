@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
@@ -23,8 +22,22 @@ func main() {
 
 func add(a, b int) (int, error) {
 	if a < 0 || b < 0 {
-		return 0, errors.New("a 或 b 不能为负数")
+		return 0, &commonError{
+			errorCode: 1,
+			errorMsg:  "a或者b不能为负数"}
 	} else {
 		return a + b, nil
 	}
+}
+
+// 自定义的error
+
+type commonError struct {
+	errorCode int    //错误码
+	errorMsg  string //错误信息
+
+}
+
+func (ce *commonError) Error() string {
+	return ce.errorMsg
 }
