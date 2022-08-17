@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -35,6 +36,21 @@ func main() {
 	} else {
 		fmt.Println(sum)
 	}
+
+	//defer 关键字 + 匿名函数 + recover 函数从 panic 异常中恢复的方式。
+	defer func() {
+		if p := recover(); p != nil {
+			fmt.Println(p)
+		}
+	}()
+	connectMySQL("", "root", "123456")
+}
+
+func connectMySQL(ip, username, password string) {
+	if ip == "" {
+		panic("ip不能为空")
+	}
+	//省略其他代码
 }
 
 func add(a, b int) (int, error) {
@@ -57,4 +73,22 @@ type commonError struct {
 
 func (ce *commonError) Error() string {
 	return ce.errorMsg
+}
+
+func ReadFile(filename string) ([]byte, error) {
+
+	f, err := os.Open(filename)
+
+	if err != nil {
+
+		return nil, err
+
+	}
+
+	defer f.Close()
+
+	//省略无关代码
+
+	//return readAll(f, n)
+	return nil, nil
 }
