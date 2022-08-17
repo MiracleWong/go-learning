@@ -13,8 +13,8 @@ func main() {
 	//	fmt.Println(i)
 	//}
 	sum, err := add(-1, 2)
-	if err != nil {
-		fmt.Println(err)
+	if cm, ok := err.(*commonError); ok {
+		fmt.Println("错误代码为：", cm.errorCode, "，错误信息为：", cm.errorMsg)
 	} else {
 		fmt.Println(sum)
 	}
