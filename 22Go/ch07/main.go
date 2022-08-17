@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -15,6 +16,22 @@ func main() {
 	sum, err := add(-1, 2)
 	if cm, ok := err.(*commonError); ok {
 		fmt.Println("错误代码为：", cm.errorCode, "，错误信息为：", cm.errorMsg)
+	} else {
+		fmt.Println(sum)
+	}
+
+	// 错误嵌套 Error Wrapping
+
+	e := errors.New("原始错误e")
+	w := fmt.Errorf("Wrap 了一个错误: %w", e)
+	fmt.Println(w)
+	fmt.Println(errors.Unwrap(w))
+
+	fmt.Println(errors.Is(w, e))
+
+	var cm *commonError
+	if errors.As(err, &cm) {
+		fmt.Println("错误代码为:", cm.errorCode, "，错误信息为：", cm.errorMsg)
 	} else {
 		fmt.Println(sum)
 	}
