@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 //共享的资源
@@ -14,18 +13,27 @@ var (
 )
 
 func main() {
-	//开启100个协程让sum+10
-	for i := 0; i < 100; i++ {
-		go add(10)
-	}
-	for i := 0; i < 10; i++ {
-		go fmt.Println("和为:", readSum())
-	}
-	// 防止提前退出
-	time.Sleep(2 * time.Second)
-	//fmt.Println("和为:", sum)
+	run()
 }
 
+func run() {
+	var wg sync.WaitGroup
+	wg.Add(110)
+	//开启100个协程让sum+10
+	for i := 0; i < 100; i++ {
+		go func() {
+			defer wg.Done()
+			add(10)
+		}()
+	}
+	for i := 0; i < 10; i++ {
+		go func() {
+			defer wg.Done()
+			fmt.Println("和为:", readSum())
+		}()
+	}
+	wg.Wait()
+}
 func add(i int) {
 	mutex.Lock()
 	defer mutex.Unlock()
