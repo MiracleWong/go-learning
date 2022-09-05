@@ -20,4 +20,16 @@ func main() {
 
 	v := <-ch
 	fmt.Println("chan 为: ", v)
+
+	// 有缓冲的channel
+	cacheCh := make(chan int, 5)
+	cacheCh <- 2
+	cacheCh <- 3
+	fmt.Println("cacheCh容量为:", cap(cacheCh), ",元素个数为：", len(cacheCh))
+	close(cacheCh)
+
+	// 单向channel
+	//onlySend := make(chan<- int)
+	//onlyReceive:=make(<-chan int)
+
 }
