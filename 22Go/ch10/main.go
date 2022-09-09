@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var wg sync.WaitGroup
-	wg.Add(1)
+	wg.Add(3)
 	ctx, stop := context.WithCancel(context.Background())
 	go func() {
 		defer wg.Done()
