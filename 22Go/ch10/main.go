@@ -15,6 +15,14 @@ func main() {
 		defer wg.Done()
 		watchDog(ctx, "[监控狗1]")
 	}()
+	go func() {
+		defer wg.Done()
+		watchDog(ctx, "[监控狗2]")
+	}()
+	go func() {
+		defer wg.Done()
+		watchDog(ctx, "[监控狗3]")
+	}()
 	time.Sleep(5 * time.Second) //先让监控狗监控5秒
 	stop()                      //发停止指令
 	wg.Wait()
