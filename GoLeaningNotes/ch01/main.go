@@ -18,6 +18,14 @@ func test(x int) func() { // 返回函数类型
 	}
 }
 
+func test2(a, b int) {
+
+	// defer 定义延迟调用，无论函数是否出错，他都确保结束前被调用。
+	defer println("dispose... ")
+
+	println(a / b)
+}
+
 func main() {
 	fmt.Println("Hello World")
 
@@ -92,5 +100,23 @@ func main() {
 	f() // 函数调用
 
 	// defer 定义延迟调用，无论函数是否出错，他都确保结束前被调用。
+	//test2(10, 0)
 
+	x4 := make([]int, 0, 5)
+	for i := 0; i < 8; i++ {
+		x4 = append(x4, i)
+	}
+
+	fmt.Println(x4)
+
+	m := make(map[string]int)
+
+	m["a"] = 1
+	fmt.Println(m["a"])
+	x5, ok := m["b"]
+	fmt.Println(x5, ok)
+
+	delete(m, "a")
+
+	fmt.Println(m["a"])
 }
