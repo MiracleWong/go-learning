@@ -41,4 +41,22 @@ func main() {
 		println("b")
 	}
 
+	// 无须显式执行break语句，case执行完毕后自动中断。如须贯通后续case（源码顺序），
+	//须执行fallthrough，但不再匹配后续条件表达式
+
+	switch z1 := 5; z1 {
+	default:
+		println(z1)
+	case 5:
+		z1 += 10
+		println("z1: ", z1)
+		if z1 >= 15 {
+			break
+		}
+
+		fallthrough
+	case 6:
+		z1 += 20
+		println("z1: ", z1)
+	}
 }
